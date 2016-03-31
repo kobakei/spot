@@ -9,5 +9,11 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        // Call init in Application or Activity's onCreate
+        Spot.init(getApplicationContext());
+
+        SampleModelRepository repository = Spot.getSampleModelRepository();
+        SampleModel sampleModel = repository.getEntity();
     }
 }
