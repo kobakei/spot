@@ -13,7 +13,8 @@ Main features are as below:
 apply plugin: 'com.neenbedankt.android-apt'
 
 dependencies {
-    compile 'io.github.kobakei:spot:0.0.1'
+    apt 'io.github.kobakei:spot-compiler:0.0.2'
+    compile 'io.github.kobakei:spot:0.0.2'
 }
 ```
 
@@ -56,12 +57,12 @@ MyEntitySpotRepository.putEntity(context, entity);
 
 |Annotation|Type|
 |---|---|
-|@PrefInt|int|
-|@PrefLong|long|
-|@PrefFloat|float|
-|@PrefBoolean|boolean|
-|@PrefString|String|
-|@PrefStringSet|Set<String>|
+|`@PrefInt`|`int`|
+|`@PrefLong`|`long`|
+|`@PrefFloat`|`float`|
+|`@PrefBoolean`|`boolean`|
+|`@PrefString`|`String`|
+|`@PrefStringSet`|`Set<String>`|
 
 ## License
 
