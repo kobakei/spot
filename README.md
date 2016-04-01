@@ -1,5 +1,7 @@
 # Spot
 
+[ ![Download](https://api.bintray.com/packages/kobakei/maven/spot/images/download.svg) ](https://bintray.com/kobakei/maven/spot/_latestVersion)
+
 **Spot** (**S**hared**P**references **O**bject **T**ransformer) is Android object-data mapper for SharedPreferences.
 
 Main features are as below:
@@ -9,12 +11,14 @@ Main features are as below:
 
 ## Download
 
+`LATEST_VERSION` is [ ![Download](https://api.bintray.com/packages/kobakei/maven/spot/images/download.svg) ](https://bintray.com/kobakei/maven/spot/_latestVersion)
+
 ```groovy
 apply plugin: 'com.neenbedankt.android-apt'
 
 dependencies {
-    apt 'io.github.kobakei:spot-compiler:0.0.2'
-    compile 'io.github.kobakei:spot:0.0.2'
+    apt 'io.github.kobakei:spot-compiler:LATEST_VERSION'
+    compile 'io.github.kobakei:spot:LATEST_VERSION'
 }
 ```
 
@@ -41,7 +45,7 @@ public class MyEntity {
 }
 ```
 
-Then once your build, `MyEntitySpotRepository` class will be generated in same package as entity class.
+Once your build, `MyEntitySpotRepository` class will be generated in same package as entity class.
 
 ```java
 // Get
@@ -63,6 +67,10 @@ MyEntitySpotRepository.putEntity(context, entity);
 |`@PrefBoolean`|`boolean`|
 |`@PrefString`|`String`|
 |`@PrefStringSet`|`Set<String>`|
+
+## Contribute this project
+
+Small bug fixes are welcomed. If you want to add new feature, please raise issue.
 
 ## License
 
