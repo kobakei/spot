@@ -10,6 +10,8 @@ Main features are as below:
 ## Download
 
 ```groovy
+apply plugin: 'com.neenbedankt.android-apt'
+
 dependencies {
     compile 'io.github.kobakei:spot:0.0.1'
 }

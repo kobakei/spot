@@ -26,10 +26,10 @@ dependencies {
 }
 
 publish {
-    userOrg = 'kobakei'
-    groupId = 'io.github.kobakei'
-    artifactId = 'spot'
-    publishVersion = "0.0.1"
-    desc = 'Android object-data mapper for SharedPreferences'
-    website = 'https://github.com/kobakei/spot'
+    userOrg = USER
+    groupId = GROUP_ID
+    artifactId = ARTIFACT_ID_LIBRARY
+    publishVersion = VERSION
+    desc = DESCRIPTION
+    website = WEBSITE
 }

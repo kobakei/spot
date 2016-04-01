@@ -1,4 +1,5 @@
 apply plugin: 'java'
+apply plugin: 'com.novoda.bintray-release'
 
 targetCompatibility = JavaVersion.VERSION_1_8
 sourceCompatibility = JavaVersion.VERSION_1_8
@@ -18,4 +19,13 @@ sourceSets {
             srcDirs = ['src/main/java', '../library/src/main/java']
         }
     }
+}
+
+publish {
+    userOrg = USER
+    groupId = GROUP_ID
+    artifactId = ARTIFACT_ID_COMPILER
+    publishVersion = VERSION
+    desc = DESCRIPTION
+    website = WEBSITE
 }
