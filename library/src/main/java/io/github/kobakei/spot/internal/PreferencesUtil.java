@@ -19,7 +19,7 @@ public final class PreferencesUtil {
         SharedPreferences preferences = context.getSharedPreferences(name, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = preferences.edit();
         editor.putInt(key, value);
-        editor.commit();
+        editor.apply();
     }
 
     public static long getLong(Context context, String name, String key, long defValue) {
@@ -31,7 +31,7 @@ public final class PreferencesUtil {
         SharedPreferences preferences = context.getSharedPreferences(name, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = preferences.edit();
         editor.putLong(key, value);
-        editor.commit();
+        editor.apply();
     }
 
     public static float getFloat(Context context, String name, String key, float defValue) {
@@ -43,7 +43,7 @@ public final class PreferencesUtil {
         SharedPreferences preferences = context.getSharedPreferences(name, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = preferences.edit();
         editor.putFloat(key, value);
-        editor.commit();
+        editor.apply();
     }
 
     public static boolean getBoolean(Context context, String name, String key, boolean defValue) {
@@ -55,7 +55,7 @@ public final class PreferencesUtil {
         SharedPreferences preferences = context.getSharedPreferences(name, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = preferences.edit();
         editor.putBoolean(key, value);
-        editor.commit();
+        editor.apply();
     }
 
     public static String getString(Context context, String name, String key, String defValue) {
@@ -67,7 +67,7 @@ public final class PreferencesUtil {
         SharedPreferences preferences = context.getSharedPreferences(name, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = preferences.edit();
         editor.putString(key, value);
-        editor.commit();
+        editor.apply();
     }
 
     public static Set<String> getStringSet(Context context, String name, String key, Set<String> defValue) {
@@ -79,6 +79,6 @@ public final class PreferencesUtil {
         SharedPreferences preferences = context.getSharedPreferences(name, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = preferences.edit();
         editor.putStringSet(key, value);
-        editor.commit();
+        editor.apply();
     }
 }
