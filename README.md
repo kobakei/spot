@@ -30,7 +30,7 @@ public class MyEntity {
 
   // String field
   // defaultValue can be omitted.
-  @PrefInt(name = "fuga", defaultValue = "Hello")
+  @PrefString(name = "fuga", defaultValue = "Hello")
   public String fuga;
 
   // Default constructor is needed.
@@ -49,6 +49,17 @@ entity.hoge = 123;
 entity.fuga = "Goodbye"
 MyEntitySpotRepository.putEntity(context, entity);
 ```
+
+## Field annotations
+
+|Annotation|Type|
+|---|---|
+|@PrefInt|int|
+|@PrefLong|long|
+|@PrefFloat|float|
+|@PrefBoolean|boolean|
+|@PrefString|String|
+|@PrefStringSet|Set<String>|
 
 ## License
 
