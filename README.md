@@ -1,5 +1,6 @@
 # Spot
 
+[![Build Status](https://circleci.com/gh/kobakei/spot.svg?style=shield)](https://circleci.com/gh/kobakei/spot/tree/master)
 [ ![Download](https://api.bintray.com/packages/kobakei/maven/spot/images/download.svg) ](https://bintray.com/kobakei/maven/spot/_latestVersion)
 
 **Spot** (**S**hared**P**references **O**bject **T**ransformer) is Android object-data mapper for SharedPreferences.
