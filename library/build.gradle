@@ -1,5 +1,6 @@
 apply plugin: 'com.android.library'
 apply plugin: 'android-apt'
+apply plugin: 'com.novoda.bintray-release'
 
 android {
     compileSdkVersion 23
@@ -22,4 +23,13 @@ android {
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     testCompile 'junit:junit:4.12'
+}
+
+publish {
+    userOrg = 'kobakei'
+    groupId = 'io.github.kobakei'
+    artifactId = 'spot'
+    publishVersion = "0.0.1"
+    desc = 'Android object-data mapper for SharedPreferences'
+    website = 'https://github.com/kobakei/spot'
 }
