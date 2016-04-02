@@ -1,7 +1,7 @@
 # Spot
 
 [![Build Status](https://circleci.com/gh/kobakei/spot.svg?style=shield)](https://circleci.com/gh/kobakei/spot/tree/master)
-[ ![Download](https://api.bintray.com/packages/kobakei/maven/spot/images/download.svg) ](https://bintray.com/kobakei/maven/spot/_latestVersion)
+[![JitPack](https://jitpack.io/v/kobakei/spot.svg)](https://jitpack.io/#kobakei/spot)
 [![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-Spot-green.svg?style=true)](https://android-arsenal.com/details/1/3374)
 
 **Spot** (**S**hared**P**references **O**bject **T**ransformer) is Android object-data mapper for SharedPreferences.
@@ -13,14 +13,33 @@ Main features are as below:
 
 ## Download
 
-`LATEST_VERSION` is [ ![Download](https://api.bintray.com/packages/kobakei/maven/spot/images/download.svg) ](https://bintray.com/kobakei/maven/spot/_latestVersion)
+`LATEST_VERSION` is  [![JitPack](https://jitpack.io/v/kobakei/spot.svg)](https://jitpack.io/#kobakei/spot)
+
+Project build.gradle
+
+```groovy
+buildscript {
+    dependencies {
+        classpath 'com.neenbedankt.gradle.plugins:android-apt:1.4'
+    }
+}
+
+allprojects {
+    repositories {
+        ...
+        maven { url "https://jitpack.io" }
+    }
+}
+```
+
+App build.gradle
 
 ```groovy
 apply plugin: 'com.neenbedankt.android-apt'
 
 dependencies {
-    apt 'io.github.kobakei:spot-compiler:LATEST_VERSION'
-    compile 'io.github.kobakei:spot:LATEST_VERSION'
+    apt 'com.github.kobakei:spot-compiler:LATEST_VERSION'
+    compile 'com.github.kobakei:spot:LATEST_VERSION'
 }
 ```
 
