@@ -13,8 +13,6 @@ Main features are as below:
 
 ## Download
 
-`LATEST_VERSION` is  [![JitPack](https://jitpack.io/v/kobakei/spot.svg)](https://jitpack.io/#kobakei/spot)
-
 Project build.gradle
 
 ```groovy
@@ -38,10 +36,12 @@ App build.gradle
 apply plugin: 'com.neenbedankt.android-apt'
 
 dependencies {
-    apt 'com.github.kobakei:spot-compiler:LATEST_VERSION'
-    compile 'com.github.kobakei:spot:LATEST_VERSION'
+    apt 'com.github.kobakei.spot:compiler:LATEST_VERSION'
+    compile 'com.github.kobakei.spot:library:LATEST_VERSION'
 }
 ```
+
+`LATEST_VERSION` is  [![JitPack](https://jitpack.io/v/kobakei/spot.svg)](https://jitpack.io/#kobakei/spot)
 
 ## Basic usage
 
