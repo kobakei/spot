@@ -2,6 +2,7 @@
 
 [![Build Status](https://circleci.com/gh/kobakei/spot.svg?style=shield)](https://circleci.com/gh/kobakei/spot/tree/master)
 [ ![Download](https://api.bintray.com/packages/kobakei/maven/spot/images/download.svg) ](https://bintray.com/kobakei/maven/spot/_latestVersion)
+[![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-Spot-green.svg?style=true)](https://android-arsenal.com/details/1/3374)
 
 **Spot** (**S**hared**P**references **O**bject **T**ransformer) is Android object-data mapper for SharedPreferences.
 
