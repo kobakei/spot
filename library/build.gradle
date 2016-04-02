@@ -1,6 +1,5 @@
 apply plugin: 'com.android.library'
 apply plugin: 'android-apt'
-apply plugin: 'com.novoda.bintray-release'
 
 android {
     compileSdkVersion 23
@@ -23,13 +22,4 @@ android {
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     testCompile 'junit:junit:4.12'
-}
-
-publish {
-    userOrg = USER
-    groupId = GROUP_ID
-    artifactId = ARTIFACT_ID_LIBRARY
-    publishVersion = VERSION
-    desc = DESCRIPTION
-    website = WEBSITE
 }
