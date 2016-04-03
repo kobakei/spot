@@ -18,6 +18,7 @@ Project build.gradle
 ```groovy
 buildscript {
     dependencies {
+        ...
         classpath 'com.neenbedankt.gradle.plugins:android-apt:1.4'
     }
 }
@@ -36,6 +37,7 @@ App build.gradle
 apply plugin: 'com.neenbedankt.android-apt'
 
 dependencies {
+    ...
     apt 'com.github.kobakei.spot:compiler:LATEST_VERSION'
     compile 'com.github.kobakei.spot:library:LATEST_VERSION'
 }
