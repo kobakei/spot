@@ -6,14 +6,11 @@ import com.google.auto.service.AutoService;
 import com.squareup.javapoet.ClassName;
 import com.squareup.javapoet.JavaFile;
 import com.squareup.javapoet.MethodSpec;
-import com.squareup.javapoet.ParameterSpec;
 import com.squareup.javapoet.TypeSpec;
 
 import java.io.IOException;
-import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 import java.util.Set;
 
 import javax.annotation.processing.AbstractProcessor;
@@ -40,7 +37,7 @@ import io.github.kobakei.spot.annotation.PrefInt;
 import io.github.kobakei.spot.annotation.PrefLong;
 import io.github.kobakei.spot.annotation.PrefString;
 import io.github.kobakei.spot.annotation.PrefStringSet;
-import io.github.kobakei.spot.annotation.Table;
+import io.github.kobakei.spot.annotation.Pref;
 import io.github.kobakei.spot.internal.PreferencesUtil;
 
 @AutoService(Processor.class)
@@ -75,7 +72,7 @@ public class SpotCompiler extends AbstractProcessor {
     @Override
     public boolean process(Set<? extends TypeElement> annotations, RoundEnvironment roundEnv) {
         log("*** process START ***");
-        Class<Table> tableClass = Table.class;
+        Class<Pref> tableClass = Pref.class;
         for (Element element : roundEnv.getElementsAnnotatedWith(tableClass)) {
             ElementKind kind = element.getKind();
             if (kind == ElementKind.CLASS) {
@@ -107,8 +104,8 @@ public class SpotCompiler extends AbstractProcessor {
         ClassName stringClass = ClassName.get(String.class);
         ClassName contextClass = ClassName.get(Context.class);
 
-        Table tableAnnotation = element.getAnnotation(Table.class);
-        String tableName = tableAnnotation.name();
+        Pref prefAnnotation = element.getAnnotation(Pref.class);
+        String tableName = prefAnnotation.name();
 
         MethodSpec constructorSpec = MethodSpec.constructorBuilder()
                 .addModifiers(Modifier.PRIVATE)

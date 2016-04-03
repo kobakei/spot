@@ -47,10 +47,10 @@ dependencies {
 
 ## Basic usage
 
-Annotate your entity class with `@Table` and fields with `@Pref***`.
+Annotate your entity class with `@Pref` and fields with `@Pref***`.
 
 ```java
-@Table(name = "foo")
+@Pref(name = "foo")
 public class MyEntity {
 
   // Integer field
@@ -116,7 +116,7 @@ public class DateTypeConverter extends TypeConverter<Date, Long> {
 At last, annotate `Date` field with converter option.
 
 ```java
-@Table(name = "foo")
+@Pref(name = "foo")
 public class MyEntity {
     @PrefLong(name = "date", converter = DateTypeConverter.class)
     public Date date;

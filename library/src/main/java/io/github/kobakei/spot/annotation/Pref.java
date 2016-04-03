@@ -7,6 +7,6 @@ import java.lang.annotation.Target;
  * Created by keisukekobayashi on 16/03/31.
  */
 @Target(ElementType.TYPE)
-public @interface Table {
+public @interface Pref {
     String name();
 }

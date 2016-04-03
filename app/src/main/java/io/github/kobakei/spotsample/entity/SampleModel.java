@@ -3,13 +3,13 @@ package io.github.kobakei.spotsample.entity;
 import java.util.Date;
 import java.util.Set;
 
+import io.github.kobakei.spot.annotation.Pref;
 import io.github.kobakei.spot.annotation.PrefBoolean;
 import io.github.kobakei.spot.annotation.PrefFloat;
 import io.github.kobakei.spot.annotation.PrefInt;
 import io.github.kobakei.spot.annotation.PrefLong;
 import io.github.kobakei.spot.annotation.PrefString;
 import io.github.kobakei.spot.annotation.PrefStringSet;
-import io.github.kobakei.spot.annotation.Table;
 import io.github.kobakei.spotsample.converter.DateTypeConverter;
 
 /**
@@ -17,7 +17,7 @@ import io.github.kobakei.spotsample.converter.DateTypeConverter;
  * POJO with annotations.
  * Created by keisukekobayashi on 16/03/31.
  */
-@Table(name = "sample")
+@Pref(name = "sample")
 public class SampleModel {
     @PrefLong(name = "number_long", defaultValue = 10000L)
     public long numberLong;
