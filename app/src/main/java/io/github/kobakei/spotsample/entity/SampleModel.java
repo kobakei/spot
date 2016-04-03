@@ -1,5 +1,6 @@
 package io.github.kobakei.spotsample.entity;
 
+import java.util.Date;
 import java.util.Set;
 
 import io.github.kobakei.spot.annotation.PrefBoolean;
@@ -9,6 +10,7 @@ import io.github.kobakei.spot.annotation.PrefLong;
 import io.github.kobakei.spot.annotation.PrefString;
 import io.github.kobakei.spot.annotation.PrefStringSet;
 import io.github.kobakei.spot.annotation.Table;
+import io.github.kobakei.spotsample.converter.DateTypeConverter;
 
 /**
  * Sample entity class.
@@ -34,4 +36,11 @@ public class SampleModel {
 
     @PrefStringSet(name = "text_set")
     public Set<String> textSet;
+
+    @PrefLong(name = "date", converter = DateTypeConverter.class)
+    public Date date;
+
+    public SampleModel() {
+
+    }
 }
