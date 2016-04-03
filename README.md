@@ -89,6 +89,38 @@ MyEntitySpotRepository.putEntity(context, entity);
 |`@PrefString`|`String`|
 |`@PrefStringSet`|`Set<String>`|
 
+## Type converter
+
+Spot supports the above 6 types as fields but other types can also be supported by providing `TypeConverter` class.
+
+For example, let's support `java.util.Date` class as entity field.
+
+At first, subclass of `TypeConverter` is needed. The follow sample gets/puts `Date` value from SharedPreferences by converting from/to `Long`.
+
+```java
+public class DateTypeConverter extends TypeConverter<Date, Long> {
+    @Override
+    public Date convertFromSupportedType(Long t) {
+        return new Date(t);
+    }
+
+    @Override
+    public Long convertToSupportedType(Date t) {
+        return t.getTime();
+    }
+}
+```
+
+At last, annotate `Date` field with converter option.
+
+```java
+@Table(name = "foo")
+public class MyEntity {
+    @PrefLong(name = "date", converter = DateTypeConverter.class)
+    public Date date;
+}
+```
+
 ## Contribute this project
 
 Small bug fixes are welcomed. If you want to add new feature, please raise issue.
