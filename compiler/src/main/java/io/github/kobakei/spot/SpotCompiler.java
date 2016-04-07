@@ -53,11 +53,11 @@ import io.github.kobakei.spot.internal.PreferencesUtil;
 @SupportedSourceVersion(SourceVersion.RELEASE_7)
 public class SpotCompiler extends AbstractProcessor {
 
+    private static final boolean LOGGABLE = false;
+
     private Filer filer;
     private Messager messager;
     private Elements elements;
-
-    private List<Element> tableElements;
 
     @Override
     public synchronized void init(ProcessingEnvironment processingEnv) {
@@ -65,8 +65,6 @@ public class SpotCompiler extends AbstractProcessor {
         this.messager = processingEnv.getMessager();
         this.filer = processingEnv.getFiler();
         this.elements = processingEnv.getElementUtils();
-
-        this.tableElements = new ArrayList<>();
     }
 
     @Override
@@ -79,7 +77,6 @@ public class SpotCompiler extends AbstractProcessor {
                 try {
                     log("*** Found table. Generating repository ***");
                     generateRepositoryClass(element);
-                    this.tableElements.add(element);
                 } catch (IOException e) {
                     logError("IO error");
                 }
@@ -339,7 +336,9 @@ public class SpotCompiler extends AbstractProcessor {
     }
 
     private void log(String msg) {
-        this.messager.printMessage(Diagnostic.Kind.OTHER, msg);
+        if (LOGGABLE) {
+            this.messager.printMessage(Diagnostic.Kind.OTHER, msg);
+        }
     }
 
     private void logError(String msg) {
