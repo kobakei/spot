@@ -50,7 +50,7 @@ import io.github.kobakei.spot.internal.PreferencesUtil;
         "io.github.kobakei.spot.annotation.PrefString",
         "io.github.kobakei.spot.annotation.PrefStringSet"
 })
-@SupportedSourceVersion(SourceVersion.RELEASE_7)
+@SupportedSourceVersion(SourceVersion.RELEASE_8)
 public class SpotCompiler extends AbstractProcessor {
 
     private static final boolean LOGGABLE = false;
