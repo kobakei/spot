@@ -9,8 +9,7 @@ import com.squareup.javapoet.MethodSpec;
 import com.squareup.javapoet.TypeSpec;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.annotation.processing.AbstractProcessor;
@@ -19,8 +18,6 @@ import javax.annotation.processing.Messager;
 import javax.annotation.processing.ProcessingEnvironment;
 import javax.annotation.processing.Processor;
 import javax.annotation.processing.RoundEnvironment;
-import javax.annotation.processing.SupportedAnnotationTypes;
-import javax.annotation.processing.SupportedSourceVersion;
 import javax.lang.model.SourceVersion;
 import javax.lang.model.element.Element;
 import javax.lang.model.element.ElementKind;
@@ -31,26 +28,16 @@ import javax.lang.model.type.TypeMirror;
 import javax.lang.model.util.Elements;
 import javax.tools.Diagnostic;
 
+import io.github.kobakei.spot.annotation.Pref;
 import io.github.kobakei.spot.annotation.PrefBoolean;
 import io.github.kobakei.spot.annotation.PrefFloat;
 import io.github.kobakei.spot.annotation.PrefInt;
 import io.github.kobakei.spot.annotation.PrefLong;
 import io.github.kobakei.spot.annotation.PrefString;
 import io.github.kobakei.spot.annotation.PrefStringSet;
-import io.github.kobakei.spot.annotation.Pref;
 import io.github.kobakei.spot.internal.PreferencesUtil;
 
 @AutoService(Processor.class)
-@SupportedAnnotationTypes({
-        "io.github.kobakei.spot.annotation.Table",
-        "io.github.kobakei.spot.annotation.PrefInt",
-        "io.github.kobakei.spot.annotation.PrefLong",
-        "io.github.kobakei.spot.annotation.PrefFloat",
-        "io.github.kobakei.spot.annotation.PrefBoolean",
-        "io.github.kobakei.spot.annotation.PrefString",
-        "io.github.kobakei.spot.annotation.PrefStringSet"
-})
-@SupportedSourceVersion(SourceVersion.RELEASE_8)
 public class SpotCompiler extends AbstractProcessor {
 
     private static final boolean LOGGABLE = false;
@@ -65,6 +52,18 @@ public class SpotCompiler extends AbstractProcessor {
         this.messager = processingEnv.getMessager();
         this.filer = processingEnv.getFiler();
         this.elements = processingEnv.getElementUtils();
+    }
+
+    @Override
+    public SourceVersion getSupportedSourceVersion() {
+        return SourceVersion.latestSupported();
+    }
+
+    @Override
+    public Set<String> getSupportedAnnotationTypes() {
+        Set<String> set = new HashSet<>();
+        set.add(Pref.class.getCanonicalName());
+        return set;
     }
 
     @Override
