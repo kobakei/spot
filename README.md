@@ -17,13 +17,6 @@ Main features are as below:
 Project build.gradle
 
 ```groovy
-buildscript {
-    dependencies {
-        ...
-        classpath 'com.neenbedankt.gradle.plugins:android-apt:1.8'
-    }
-}
-
 allprojects {
     repositories {
         ...
@@ -35,16 +28,16 @@ allprojects {
 App build.gradle
 
 ```groovy
-apply plugin: 'com.neenbedankt.android-apt'
-
 dependencies {
     ...
-    apt 'com.github.kobakei.spot:compiler:LATEST_VERSION'
+    annotationProcessor 'com.github.kobakei.spot:compiler:LATEST_VERSION'
     compile 'com.github.kobakei.spot:library:LATEST_VERSION'
 }
 ```
 
 `LATEST_VERSION` is  [![JitPack](https://jitpack.io/v/kobakei/spot.svg)](https://jitpack.io/#kobakei/spot)
+
+NOTE: if you use Android Gradle Plugin before 2.2.0, you must use android-apt plugin instead of [annotationProcessor](https://bitbucket.org/hvisser/android-apt) configuration.
 
 ## Basic usage
 
