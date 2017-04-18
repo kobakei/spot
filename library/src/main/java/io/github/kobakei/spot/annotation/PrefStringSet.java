@@ -14,4 +14,5 @@ import io.github.kobakei.spot.converter.TypeConverter;
 public @interface PrefStringSet {
     String name();
     Class<? extends TypeConverter> converter() default StringSetTypeConverter.class;
+    boolean useSetter() default false;
 }

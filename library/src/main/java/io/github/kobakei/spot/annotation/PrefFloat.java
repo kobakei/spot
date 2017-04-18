@@ -14,4 +14,5 @@ public @interface PrefFloat {
     String name();
     float defaultValue() default 0.0f;
     Class<? extends TypeConverter> converter() default FloatTypeConverter.class;
+    boolean useSetter() default false;
 }

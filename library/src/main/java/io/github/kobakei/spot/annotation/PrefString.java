@@ -14,4 +14,5 @@ public @interface PrefString {
     String name();
     String defaultValue() default "";
     Class<? extends TypeConverter> converter() default StringTypeConverter.class;
+    boolean useSetter() default false;
 }

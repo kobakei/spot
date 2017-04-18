@@ -14,4 +14,5 @@ public @interface PrefBoolean {
     String name();
     boolean defaultValue() default false;
     Class<? extends TypeConverter> converter() default BooleanTypeConverter.class;
+    boolean useSetter() default false;
 }
