@@ -117,6 +117,32 @@ public class MyEntity {
 }
 ```
 
+## Kotlin
+
+To work with Kotlin, please set true to `useSetter` option.
+
+```kotlin
+@Pref(name = "MyModel")
+data class MyModel {
+  @PrefField(name = "foo", useSetter = true)
+  val foo: Int = 0
+}
+```
+
+## Migration from 1.0.0 or older versions
+
+- Replace `@Pref***` with `@PrefField`
+  - `defaultValue` is deprecated at v2 therefore put default value to field init value.
+  ```java
+  // Before
+  // @PrefInt(name = "foo", defaultValue = 123)
+  // public int foo;
+   
+  // After
+  @PrefField(name = "foo")
+  public int foo = 123;  
+  ```
+
 ## Contribute this project
 
 Small bug fixes are welcomed. If you want to add new feature, please raise issue.
