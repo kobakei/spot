@@ -49,13 +49,13 @@ public class MyEntity {
 
   // Integer field
   // defaultValue can be omitted.
-  @PrefInt(name = "hoge", defaultValue = 1)
-  public int hoge;
+  @PrefField(name = "hoge")
+  public int hoge = 123;
 
   // String field
   // defaultValue can be omitted.
-  @PrefString(name = "fuga", defaultValue = "Hello")
-  public String fuga;
+  @PrefField(name = "fuga")
+  public String fuga = "Hello";
 
   // Default constructor is needed.
   public MyEntity() {}
@@ -74,20 +74,9 @@ entity.fuga = "Goodbye"
 MyEntitySpotRepository.putEntity(context, entity);
 ```
 
-## Field annotations
-
-|Annotation|Type|
-|---|---|
-|`@PrefInt`|`int`|
-|`@PrefLong`|`long`|
-|`@PrefFloat`|`float`|
-|`@PrefBoolean`|`boolean`|
-|`@PrefString`|`String`|
-|`@PrefStringSet`|`Set<String>`|
-
 ## Type converter
 
-Spot supports the above 6 types as fields but other types can also be supported by providing `TypeConverter` class.
+Spot supports 6 types (`int`, `long`, `float`, `boolean`, `String` and `Set<String>`) as fields but other types can also be supported by providing `TypeConverter` class.
 
 For example, let's support `java.util.Date` class as entity field.
 
@@ -112,7 +101,7 @@ At last, annotate `Date` field with converter option.
 ```java
 @Pref(name = "foo")
 public class MyEntity {
-    @PrefLong(name = "date", converter = DateTypeConverter.class)
+    @PrefField(name = "date", converter = DateTypeConverter.class)
     public Date date;
 }
 ```
