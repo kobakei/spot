@@ -12,7 +12,6 @@ import io.github.kobakei.spot.converter.TypeConverter;
 @Target(ElementType.FIELD)
 public @interface PrefString {
     String name();
-    String defaultValue() default "";
     Class<? extends TypeConverter> converter() default StringTypeConverter.class;
     boolean useSetter() default false;
 }

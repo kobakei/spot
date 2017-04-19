@@ -12,7 +12,6 @@ import io.github.kobakei.spot.converter.TypeConverter;
 @Target(ElementType.FIELD)
 public @interface PrefBoolean {
     String name();
-    boolean defaultValue() default false;
     Class<? extends TypeConverter> converter() default BooleanTypeConverter.class;
     boolean useSetter() default false;
 }

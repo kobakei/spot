@@ -163,6 +163,8 @@ public class SpotCompiler extends AbstractProcessor {
             }
             ClassName converterClass = ClassName.bestGuess(typeMirror.toString());
 
+            getEntitySpecBuilder.beginControlFlow("if ($T.contains(context, getName(), $S))", utilClass, pref.name());
+
             if (pref.useSetter()) {
                 String setterName = getSetterName(element1.getSimpleName().toString());
                 getEntitySpecBuilder.addStatement(
@@ -171,7 +173,7 @@ public class SpotCompiler extends AbstractProcessor {
                         converterClass,
                         utilClass,
                         pref.name(),
-                        pref.defaultValue());
+                        0);
             } else {
                 getEntitySpecBuilder.addStatement(
                         "entity.$N = new $T().convertFromSupportedType( $T.getInt(context, getName(), $S, $L) )",
@@ -179,8 +181,10 @@ public class SpotCompiler extends AbstractProcessor {
                         converterClass,
                         utilClass,
                         pref.name(),
-                        pref.defaultValue());
+                        0);
             }
+
+            getEntitySpecBuilder.endControlFlow();
 
             putEntitySpecBuilder.addStatement(
                     "$T.putInt(context, getName(), $S, new $T().convertToSupportedType(entity.$N))",
@@ -205,6 +209,8 @@ public class SpotCompiler extends AbstractProcessor {
             }
             ClassName converterClass = ClassName.bestGuess(typeMirror.toString());
 
+            getEntitySpecBuilder.beginControlFlow("if ($T.contains(context, getName(), $S))", utilClass, pref.name());
+
             if (pref.useSetter()) {
                 String setterName = getSetterName(element1.getSimpleName().toString());
                 getEntitySpecBuilder.addStatement(
@@ -213,7 +219,7 @@ public class SpotCompiler extends AbstractProcessor {
                         converterClass,
                         utilClass,
                         pref.name(),
-                        pref.defaultValue());
+                        0L);
             } else {
                 getEntitySpecBuilder.addStatement(
                         "entity.$N = new $T().convertFromSupportedType( $T.getLong(context, getName(), $S, $L) )",
@@ -221,8 +227,10 @@ public class SpotCompiler extends AbstractProcessor {
                         converterClass,
                         utilClass,
                         pref.name(),
-                        pref.defaultValue());
+                        0L);
             }
+
+            getEntitySpecBuilder.endControlFlow();
 
             putEntitySpecBuilder.addStatement(
                     "$T.putLong(context, getName(), $S, new $T().convertToSupportedType(entity.$N))",
@@ -247,6 +255,8 @@ public class SpotCompiler extends AbstractProcessor {
             }
             ClassName converterClass = ClassName.bestGuess(typeMirror.toString());
 
+            getEntitySpecBuilder.beginControlFlow("if ($T.contains(context, getName(), $S))", utilClass, pref.name());
+
             if (pref.useSetter()) {
                 String setterName = getSetterName(element1.getSimpleName().toString());
                 getEntitySpecBuilder.addStatement(
@@ -255,7 +265,7 @@ public class SpotCompiler extends AbstractProcessor {
                         converterClass,
                         utilClass,
                         pref.name(),
-                        pref.defaultValue());
+                        0.0f);
             } else {
                 getEntitySpecBuilder.addStatement(
                         "entity.$N = new $T().convertFromSupportedType( $T.getFloat(context, getName(), $S, $Lf) )",
@@ -263,8 +273,10 @@ public class SpotCompiler extends AbstractProcessor {
                         converterClass,
                         utilClass,
                         pref.name(),
-                        pref.defaultValue());
+                        0.0f);
             }
+
+            getEntitySpecBuilder.endControlFlow();
 
             putEntitySpecBuilder.addStatement(
                     "$T.putFloat(context, getName(), $S, new $T().convertToSupportedType(entity.$N))",
@@ -289,6 +301,8 @@ public class SpotCompiler extends AbstractProcessor {
             }
             ClassName converterClass = ClassName.bestGuess(typeMirror.toString());
 
+            getEntitySpecBuilder.beginControlFlow("if ($T.contains(context, getName(), $S))", utilClass, pref.name());
+
             if (pref.useSetter()) {
                 String setterName = getSetterName(element1.getSimpleName().toString());
                 getEntitySpecBuilder.addStatement(
@@ -297,7 +311,7 @@ public class SpotCompiler extends AbstractProcessor {
                         converterClass,
                         utilClass,
                         pref.name(),
-                        pref.defaultValue());
+                        false);
             } else {
                 getEntitySpecBuilder.addStatement(
                         "entity.$N = new $T().convertFromSupportedType( $T.getBoolean(context, getName(), $S, $L) )",
@@ -305,8 +319,10 @@ public class SpotCompiler extends AbstractProcessor {
                         converterClass,
                         utilClass,
                         pref.name(),
-                        pref.defaultValue());
+                        false);
             }
+
+            getEntitySpecBuilder.endControlFlow();
 
             putEntitySpecBuilder.addStatement(
                     "$T.putBoolean(context, getName(), $S, new $T().convertToSupportedType(entity.$N) )",
@@ -331,6 +347,8 @@ public class SpotCompiler extends AbstractProcessor {
             }
             ClassName converterClass = ClassName.bestGuess(typeMirror.toString());
 
+            getEntitySpecBuilder.beginControlFlow("if ($T.contains(context, getName(), $S))", utilClass, pref.name());
+
             if (pref.useSetter()) {
                 String setterName = getSetterName(element1.getSimpleName().toString());
                 getEntitySpecBuilder.addStatement(
@@ -339,7 +357,7 @@ public class SpotCompiler extends AbstractProcessor {
                         converterClass,
                         utilClass,
                         pref.name(),
-                        pref.defaultValue());
+                        null);
             } else {
                 getEntitySpecBuilder.addStatement(
                         "entity.$N = new $T().convertFromSupportedType( $T.getString(context, getName(), $S, $S) )",
@@ -347,8 +365,10 @@ public class SpotCompiler extends AbstractProcessor {
                         converterClass,
                         utilClass,
                         pref.name(),
-                        pref.defaultValue());
+                        null);
             }
+
+            getEntitySpecBuilder.endControlFlow();
 
             putEntitySpecBuilder.addStatement(
                     "$T.putString(context, getName(), $S, new $T().convertToSupportedType(entity.$N) )",
@@ -373,6 +393,8 @@ public class SpotCompiler extends AbstractProcessor {
             }
             ClassName converterClass = ClassName.bestGuess(typeMirror.toString());
 
+            getEntitySpecBuilder.beginControlFlow("if ($T.contains(context, getName(), $S))", utilClass, pref.name());
+
             if (pref.useSetter()) {
                 String setterName = getSetterName(element1.getSimpleName().toString());
                 getEntitySpecBuilder.addStatement(
@@ -389,6 +411,8 @@ public class SpotCompiler extends AbstractProcessor {
                         utilClass,
                         pref.name());
             }
+
+            getEntitySpecBuilder.endControlFlow();
 
             putEntitySpecBuilder.addStatement(
                     "$T.putStringSet(context, getName(), $S, new $T().convertToSupportedType(entity.$N))",

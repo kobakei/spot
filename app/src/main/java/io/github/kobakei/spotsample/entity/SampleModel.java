@@ -19,20 +19,20 @@ import io.github.kobakei.spotsample.converter.DateTypeConverter;
  */
 @Pref(name = "sample")
 public class SampleModel {
-    @PrefLong(name = "number_long", defaultValue = 10000L, useSetter = true)
-    public long numberLong;
+    @PrefLong(name = "number_long", useSetter = true)
+    public long numberLong = 10000L;
 
-    @PrefInt(name = "number_int", defaultValue = 100, useSetter = true)
-    public int numberInt;
+    @PrefInt(name = "number_int", useSetter = true)
+    public int numberInt = 100;
 
-    @PrefFloat(name = "number_float", defaultValue = 1.2f, useSetter = true)
-    public float numberFloat;
+    @PrefFloat(name = "number_float", useSetter = true)
+    public float numberFloat = 1.2f;
 
-    @PrefBoolean(name = "is_enabled", defaultValue = true, useSetter = true)
-    public boolean isEnabled;
+    @PrefBoolean(name = "is_enabled", useSetter = true)
+    public boolean isEnabled = true;
 
-    @PrefString(name = "text", defaultValue = "init", useSetter = true)
-    public String text;
+    @PrefString(name = "text", useSetter = true)
+    public String text = "init";
 
     @PrefStringSet(name = "text_set", useSetter = true)
     public Set<String> textSet;
