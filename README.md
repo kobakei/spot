@@ -114,7 +114,7 @@ To work with Kotlin, please set true to `useSetter` and `useGetter` option.
 @Pref(name = "MyModel")
 data class MyModel {
   @PrefField(name = "foo", useSetter = true, useGetter = true)
-  val foo: Int = 0
+  var foo: Int = 0
 }
 ```
 
