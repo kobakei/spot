@@ -41,7 +41,7 @@ NOTE: if you use Android Gradle Plugin before 2.2.0, you must use android-apt pl
 
 ## Basic usage
 
-Annotate your entity class with `@Pref` and fields with `@Pref***`.
+Annotate your entity class with `@Pref` and fields with `@PrefField`.
 
 ```java
 @Pref(name = "foo")
