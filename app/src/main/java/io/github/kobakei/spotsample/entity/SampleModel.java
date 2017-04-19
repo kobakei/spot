@@ -4,12 +4,7 @@ import java.util.Date;
 import java.util.Set;
 
 import io.github.kobakei.spot.annotation.Pref;
-import io.github.kobakei.spot.annotation.PrefBoolean;
-import io.github.kobakei.spot.annotation.PrefFloat;
-import io.github.kobakei.spot.annotation.PrefInt;
-import io.github.kobakei.spot.annotation.PrefLong;
-import io.github.kobakei.spot.annotation.PrefString;
-import io.github.kobakei.spot.annotation.PrefStringSet;
+import io.github.kobakei.spot.annotation.PrefField;
 import io.github.kobakei.spotsample.converter.DateTypeConverter;
 
 /**
@@ -19,26 +14,29 @@ import io.github.kobakei.spotsample.converter.DateTypeConverter;
  */
 @Pref(name = "sample")
 public class SampleModel {
-    @PrefLong(name = "number_long", defaultValue = 10000L)
-    public long numberLong;
+    @PrefField(name = "number_long")
+    public long numberLong = 10000L;
 
-    @PrefInt(name = "number_int", defaultValue = 100)
-    public int numberInt;
+    @PrefField(name = "number_int")
+    public int numberInt = 100;
 
-    @PrefFloat(name = "number_float", defaultValue = 1.2f)
-    public float numberFloat;
+    @PrefField(name = "number_float")
+    public float numberFloat = 1.2f;
 
-    @PrefBoolean(name = "is_enabled", defaultValue = true)
-    public boolean isEnabled;
+    @PrefField(name = "is_enabled")
+    public boolean isEnabled = true;
 
-    @PrefString(name = "text", defaultValue = "init")
-    public String text;
+    @PrefField(name = "text")
+    public String text = "init";
 
-    @PrefStringSet(name = "text_set")
+    @PrefField(name = "text_set")
     public Set<String> textSet;
 
-    @PrefLong(name = "date", converter = DateTypeConverter.class)
-    public Date date;
+    @PrefField(name = "date", converter = DateTypeConverter.class)
+    public Date date = new Date(0L);
+
+    @PrefField(name = "boxed_int")
+    public Integer boxedInt = 1;
 
     public SampleModel() {
 

@@ -10,6 +10,11 @@ import java.util.Set;
  */
 public final class PreferencesUtil {
 
+    public static boolean contains(Context context, String name, String key) {
+        SharedPreferences preferences = context.getSharedPreferences(name, Context.MODE_PRIVATE);
+        return preferences.contains(key);
+    }
+
     public static int getInt(Context context, String name, String key, int defValue) {
         SharedPreferences preferences = context.getSharedPreferences(name, Context.MODE_PRIVATE);
         return preferences.getInt(key, defValue);
