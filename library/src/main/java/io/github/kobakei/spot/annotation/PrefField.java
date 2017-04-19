@@ -14,4 +14,5 @@ public @interface PrefField {
     String name();
     Class<? extends TypeConverter> converter() default DefaultTypeConverter.class;
     boolean useSetter() default false;
+    boolean useGetter() default false;
 }

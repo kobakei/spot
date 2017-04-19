@@ -14,32 +14,64 @@ import io.github.kobakei.spotsample.converter.DateTypeConverter;
  */
 @Pref(name = "sample2")
 public class SampleModel2 {
-    @PrefField(name = "number_long", useSetter = true)
+    @PrefField(name = "number_long", useSetter = true, useGetter = true)
     public long numberLong = 10000L;
 
-    @PrefField(name = "number_int", useSetter = true)
+    @PrefField(name = "number_int", useSetter = true, useGetter = true)
     public int numberInt = 100;
 
-    @PrefField(name = "number_float", useSetter = true)
+    @PrefField(name = "number_float", useSetter = true, useGetter = true)
     public float numberFloat = 1.2f;
 
-    @PrefField(name = "is_enabled", useSetter = true)
+    @PrefField(name = "is_enabled", useSetter = true, useGetter = true)
     public boolean isEnabled = true;
 
-    @PrefField(name = "text", useSetter = true)
+    @PrefField(name = "text", useSetter = true, useGetter = true)
     public String text = "init";
 
-    @PrefField(name = "text_set", useSetter = true)
+    @PrefField(name = "text_set", useSetter = true, useGetter = true)
     public Set<String> textSet;
 
-    @PrefField(name = "date", converter = DateTypeConverter.class, useSetter = true)
+    @PrefField(name = "date", converter = DateTypeConverter.class, useSetter = true, useGetter = true)
     public Date date;
 
-    @PrefField(name = "boxed_int", useSetter = true)
+    @PrefField(name = "boxed_int", useSetter = true, useGetter = true)
     public Integer boxedInt;
 
     public SampleModel2() {
 
+    }
+
+    public long getNumberLong() {
+        return numberLong;
+    }
+
+    public int getNumberInt() {
+        return numberInt;
+    }
+
+    public float getNumberFloat() {
+        return numberFloat;
+    }
+
+    public boolean getIsEnabled() {
+        return isEnabled;
+    }
+
+    public String getText() {
+        return text;
+    }
+
+    public Set<String> getTextSet() {
+        return textSet;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public Integer getBoxedInt() {
+        return boxedInt;
     }
 
     public void setNumberLong(long number) {

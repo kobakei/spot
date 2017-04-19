@@ -108,12 +108,12 @@ public class MyEntity {
 
 ## Kotlin
 
-To work with Kotlin, please set true to `useSetter` option.
+To work with Kotlin, please set true to `useSetter` and `useGetter` option.
 
 ```kotlin
 @Pref(name = "MyModel")
 data class MyModel {
-  @PrefField(name = "foo", useSetter = true)
+  @PrefField(name = "foo", useSetter = true, useGetter = true)
   val foo: Int = 0
 }
 ```

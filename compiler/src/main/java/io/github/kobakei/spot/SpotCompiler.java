@@ -28,7 +28,6 @@ import javax.lang.model.type.DeclaredType;
 import javax.lang.model.type.MirroredTypeException;
 import javax.lang.model.type.TypeMirror;
 import javax.lang.model.util.Elements;
-import javax.lang.model.util.Types;
 import javax.tools.Diagnostic;
 
 import io.github.kobakei.spot.annotation.Pref;
@@ -38,7 +37,7 @@ import io.github.kobakei.spot.internal.PreferencesUtil;
 @AutoService(Processor.class)
 public class SpotCompiler extends AbstractProcessor {
 
-    private static final boolean LOGGABLE = true;
+    private static final boolean LOGGABLE = false;
 
     private Filer filer;
     private Messager messager;
@@ -200,12 +199,22 @@ public class SpotCompiler extends AbstractProcessor {
 
         getEntitySpecBuilder.endControlFlow();
 
-        putEntitySpecBuilder.addStatement(
-                "$T.putInt(context, getName(), $S, new $T().convertToSupportedType(entity.$N))",
-                utilClass,
-                pref.name(),
-                converterClass,
-                element1.getSimpleName());
+        if (pref.useGetter()) {
+            String getterName = getGetterName(element1.getSimpleName().toString());
+            putEntitySpecBuilder.addStatement(
+                    "$T.putInt(context, getName(), $S, new $T().convertToSupportedType(entity.$N()))",
+                    utilClass,
+                    pref.name(),
+                    converterClass,
+                    getterName);
+        } else {
+            putEntitySpecBuilder.addStatement(
+                    "$T.putInt(context, getName(), $S, new $T().convertToSupportedType(entity.$N))",
+                    utilClass,
+                    pref.name(),
+                    converterClass,
+                    element1.getSimpleName());
+        }
     }
 
     private void handlePrefLong(Element element1, MethodSpec.Builder getEntitySpecBuilder,
@@ -238,12 +247,22 @@ public class SpotCompiler extends AbstractProcessor {
 
         getEntitySpecBuilder.endControlFlow();
 
-        putEntitySpecBuilder.addStatement(
-                "$T.putLong(context, getName(), $S, new $T().convertToSupportedType(entity.$N))",
-                utilClass,
-                pref.name(),
-                converterClass,
-                element1.getSimpleName());
+        if (pref.useGetter()) {
+            String getterName = getGetterName(element1.getSimpleName().toString());
+            putEntitySpecBuilder.addStatement(
+                    "$T.putLong(context, getName(), $S, new $T().convertToSupportedType(entity.$N()))",
+                    utilClass,
+                    pref.name(),
+                    converterClass,
+                    getterName);
+        } else {
+            putEntitySpecBuilder.addStatement(
+                    "$T.putLong(context, getName(), $S, new $T().convertToSupportedType(entity.$N))",
+                    utilClass,
+                    pref.name(),
+                    converterClass,
+                    element1.getSimpleName());
+        }
     }
 
     private void handlePrefFloat(Element element1, MethodSpec.Builder getEntitySpecBuilder,
@@ -276,12 +295,22 @@ public class SpotCompiler extends AbstractProcessor {
 
         getEntitySpecBuilder.endControlFlow();
 
-        putEntitySpecBuilder.addStatement(
-                "$T.putFloat(context, getName(), $S, new $T().convertToSupportedType(entity.$N))",
-                utilClass,
-                pref.name(),
-                converterClass,
-                element1.getSimpleName());
+        if (pref.useGetter()) {
+            String getterName = getGetterName(element1.getSimpleName().toString());
+            putEntitySpecBuilder.addStatement(
+                    "$T.putFloat(context, getName(), $S, new $T().convertToSupportedType(entity.$N()))",
+                    utilClass,
+                    pref.name(),
+                    converterClass,
+                    getterName);
+        } else {
+            putEntitySpecBuilder.addStatement(
+                    "$T.putFloat(context, getName(), $S, new $T().convertToSupportedType(entity.$N))",
+                    utilClass,
+                    pref.name(),
+                    converterClass,
+                    element1.getSimpleName());
+        }
     }
 
     private void handlePrefBoolean(Element element1, MethodSpec.Builder getEntitySpecBuilder,
@@ -314,12 +343,22 @@ public class SpotCompiler extends AbstractProcessor {
 
         getEntitySpecBuilder.endControlFlow();
 
-        putEntitySpecBuilder.addStatement(
-                "$T.putBoolean(context, getName(), $S, new $T().convertToSupportedType(entity.$N) )",
-                utilClass,
-                pref.name(),
-                converterClass,
-                element1.getSimpleName());
+        if (pref.useGetter()) {
+            String getterName = getGetterName(element1.getSimpleName().toString());
+            putEntitySpecBuilder.addStatement(
+                    "$T.putBoolean(context, getName(), $S, new $T().convertToSupportedType(entity.$N()) )",
+                    utilClass,
+                    pref.name(),
+                    converterClass,
+                    getterName);
+        } else {
+            putEntitySpecBuilder.addStatement(
+                    "$T.putBoolean(context, getName(), $S, new $T().convertToSupportedType(entity.$N) )",
+                    utilClass,
+                    pref.name(),
+                    converterClass,
+                    element1.getSimpleName());
+        }
     }
 
     private void handlePrefString(Element element1, MethodSpec.Builder getEntitySpecBuilder,
@@ -352,12 +391,22 @@ public class SpotCompiler extends AbstractProcessor {
 
         getEntitySpecBuilder.endControlFlow();
 
-        putEntitySpecBuilder.addStatement(
-                "$T.putString(context, getName(), $S, new $T().convertToSupportedType(entity.$N) )",
-                utilClass,
-                pref.name(),
-                converterClass,
-                element1.getSimpleName());
+        if (pref.useGetter()) {
+            String getterName = getGetterName(element1.getSimpleName().toString());
+            putEntitySpecBuilder.addStatement(
+                    "$T.putString(context, getName(), $S, new $T().convertToSupportedType(entity.$N()) )",
+                    utilClass,
+                    pref.name(),
+                    converterClass,
+                    getterName);
+        } else {
+            putEntitySpecBuilder.addStatement(
+                    "$T.putString(context, getName(), $S, new $T().convertToSupportedType(entity.$N) )",
+                    utilClass,
+                    pref.name(),
+                    converterClass,
+                    element1.getSimpleName());
+        }
     }
 
     private void handlePrefStringSet(Element element1, MethodSpec.Builder getEntitySpecBuilder,
@@ -388,12 +437,33 @@ public class SpotCompiler extends AbstractProcessor {
 
         getEntitySpecBuilder.endControlFlow();
 
-        putEntitySpecBuilder.addStatement(
-                "$T.putStringSet(context, getName(), $S, new $T().convertToSupportedType(entity.$N))",
-                utilClass,
-                pref.name(),
-                converterClass,
-                element1.getSimpleName());
+        if (pref.useGetter()) {
+            String getterName = getGetterName(element1.getSimpleName().toString());
+            putEntitySpecBuilder.addStatement(
+                    "$T.putStringSet(context, getName(), $S, new $T().convertToSupportedType(entity.$N()))",
+                    utilClass,
+                    pref.name(),
+                    converterClass,
+                    getterName);
+        } else {
+            putEntitySpecBuilder.addStatement(
+                    "$T.putStringSet(context, getName(), $S, new $T().convertToSupportedType(entity.$N))",
+                    utilClass,
+                    pref.name(),
+                    converterClass,
+                    element1.getSimpleName());
+        }
+    }
+
+    private String getGetterName(String field) {
+        String setter = "get";
+        if (field.length() > 0) {
+            setter += field.substring(0, 1).toUpperCase();
+            if (field.length() > 1) {
+                setter += field.substring(1);
+            }
+        }
+        return setter;
     }
 
     private String getSetterName(String field) {
