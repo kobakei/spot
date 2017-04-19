@@ -102,7 +102,7 @@ At last, annotate `Date` field with converter option.
 @Pref(name = "foo")
 public class MyEntity {
     @PrefField(name = "date", converter = DateTypeConverter.class)
-    public Date date;
+    public Date date = new Date();
 }
 ```
 
