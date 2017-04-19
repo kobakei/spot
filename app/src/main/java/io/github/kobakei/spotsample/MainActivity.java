@@ -3,8 +3,11 @@ package io.github.kobakei.spotsample;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.EditText;
+import android.widget.TimePicker;
 import android.widget.Toast;
 
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -35,6 +38,9 @@ public class MainActivity extends AppCompatActivity {
     @Bind({R.id.editStringSet1, R.id.editStringSet2, R.id.editStringSet3})
     List<EditText> editStringSet;
 
+    @Bind(R.id.date)
+    TimePicker timePicker;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,6 +65,8 @@ public class MainActivity extends AppCompatActivity {
                 editStringSet.get(i).setText(tokens[i]);
             }
         }
+
+        timePicker.setIs24HourView(true);
     }
 
     @OnClick(R.id.button)
@@ -75,6 +83,11 @@ public class MainActivity extends AppCompatActivity {
             set.add(editStringSet.get(1).getText().toString());
             set.add(editStringSet.get(2).getText().toString());
             sampleModel.textSet = set;
+            Calendar cal = Calendar.getInstance();
+            cal.setTime(new Date());
+            cal.set(Calendar.HOUR_OF_DAY, timePicker.getCurrentHour());
+            cal.set(Calendar.MINUTE, timePicker.getCurrentMinute());
+            sampleModel.date = cal.getTime();
             SampleModelSpotRepository.putEntity(getApplicationContext(), sampleModel);
             Toast.makeText(this, "Saved", Toast.LENGTH_SHORT).show();
         } catch (NumberFormatException e) {

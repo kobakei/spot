@@ -33,10 +33,10 @@ public class SampleModel {
     public Set<String> textSet;
 
     @PrefField(name = "date", converter = DateTypeConverter.class)
-    public Date date;
+    public Date date = new Date(0L);
 
     @PrefField(name = "boxed_int")
-    public Integer boxedInt;
+    public Integer boxedInt = 1;
 
     public SampleModel() {
 
