@@ -96,6 +96,7 @@ public class SpotCompiler extends AbstractProcessor {
         ClassName entityClass = ClassName.get(packageName, element.getSimpleName().toString());
         ClassName stringClass = ClassName.get(String.class);
         ClassName contextClass = ClassName.get(Context.class);
+        ClassName utilClass = ClassName.get(PreferencesUtil.class);
 
         Pref prefAnnotation = element.getAnnotation(Pref.class);
         String tableName = prefAnnotation.name();
@@ -121,6 +122,12 @@ public class SpotCompiler extends AbstractProcessor {
                 .addParameter(contextClass, "context")
                 .addParameter(entityClass, "entity");
 
+        MethodSpec.Builder clearSpecBuilder = MethodSpec.methodBuilder("clear")
+                .addModifiers(Modifier.PUBLIC, Modifier.FINAL, Modifier.STATIC)
+                .addParameter(contextClass, "context")
+                .addStatement("$T.clear(context, getName())",
+                        utilClass);
+
         for (Element element1 : element.getEnclosedElements()) {
             if (element1.getAnnotation(PrefField.class) != null) {
                 handlePrefField(element1, getEntitySpecBuilder, putEntitySpecBuilder);
@@ -136,6 +143,7 @@ public class SpotCompiler extends AbstractProcessor {
                 .addMethod(getNameSpec)
                 .addMethod(getEntitySpecBuilder.build())
                 .addMethod(putEntitySpecBuilder.build())
+                .addMethod(clearSpecBuilder.build())
                 .build();
 
         JavaFile.builder(packageName, repository)
