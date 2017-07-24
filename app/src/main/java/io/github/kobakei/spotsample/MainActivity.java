@@ -94,4 +94,10 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(this, "Format error", Toast.LENGTH_SHORT).show();
         }
     }
+
+    @OnClick(R.id.button2)
+    void onClearClicked() {
+        SampleModelSpotRepository.clear(getApplicationContext());
+        Toast.makeText(this, "Cleared", Toast.LENGTH_SHORT).show();
+    }
 }
