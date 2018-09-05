@@ -26,7 +26,7 @@ import static org.junit.Assert.assertTrue;
 @RunWith(RobolectricTestRunner.class)
 @Config(
         application = TestApplication.class,
-        constants = BuildConfig.class,
+        manifest = Config.NONE,
         shadows = ShadowPreference.class
 )
 public class SampleModelSpotRepositoryTest {
