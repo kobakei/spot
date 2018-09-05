@@ -1,10 +1,16 @@
 package io.github.kobakei.spotsample;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.widget.EditText;
 import android.widget.TimePicker;
 import android.widget.Toast;
+import butterknife.BindView;
+import butterknife.BindViews;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
+import io.github.kobakei.spotsample.entity.SampleModel;
+import io.github.kobakei.spotsample.entity.SampleModelSpotRepository;
 
 import java.util.Calendar;
 import java.util.Date;
@@ -12,39 +18,34 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import butterknife.Bind;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
-import io.github.kobakei.spotsample.entity.SampleModel;
-import io.github.kobakei.spotsample.entity.SampleModelSpotRepository;
-
 public class MainActivity extends AppCompatActivity {
 
-    @Bind(R.id.editInt)
+    @BindView(R.id.editInt)
     EditText editInt;
 
-    @Bind(R.id.editLong)
+    @BindView(R.id.editLong)
     EditText editLong;
 
-    @Bind(R.id.editFloat)
+    @BindView(R.id.editFloat)
     EditText editFloat;
 
-    @Bind(R.id.editBoolean)
+    @BindView(R.id.editBoolean)
     EditText editBoolean;
 
-    @Bind(R.id.editString)
+    @BindView(R.id.editString)
     EditText editString;
 
-    @Bind({R.id.editStringSet1, R.id.editStringSet2, R.id.editStringSet3})
+    @BindViews({ R.id.editStringSet1, R.id.editStringSet2, R.id.editStringSet3 })
     List<EditText> editStringSet;
 
-    @Bind(R.id.date)
+    @BindView(R.id.date)
     TimePicker timePicker;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        ButterKnife.setDebug(true);
         ButterKnife.bind(this);
 
         // Call init in Application or Activity's onCreate
@@ -54,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
             editInt.setText(Integer.toString(sampleModel.numberInt));
             editLong.setText(Long.toString(sampleModel.numberLong));
             editFloat.setText(Float.toString(sampleModel.numberFloat));
-        } catch (NumberFormatException e) {
+        } catch (NumberFormatException | NullPointerException e) {
             e.printStackTrace();
         }
         editBoolean.setText(Boolean.toString(sampleModel.isEnabled));
