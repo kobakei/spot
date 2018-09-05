@@ -54,7 +54,7 @@ public class SampleModel2 {
         return numberFloat;
     }
 
-    public boolean getIsEnabled() {
+    public boolean isEnabled() {
         return isEnabled;
     }
 
@@ -86,7 +86,7 @@ public class SampleModel2 {
         this.numberFloat = number;
     }
 
-    public void setIsEnabled(boolean isEnabled) {
+    public void setEnabled(boolean isEnabled) {
         this.isEnabled = isEnabled;
     }
 

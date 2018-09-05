@@ -2,7 +2,8 @@ package io.github.kobakei.spotsample;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-
+import io.github.kobakei.spotsample.entity.SampleModel;
+import io.github.kobakei.spotsample.entity.SampleModelSpotRepository;
 import org.junit.After;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -11,8 +12,10 @@ import org.robolectric.RuntimeEnvironment;
 import org.robolectric.annotation.Config;
 import org.robolectric.shadows.ShadowPreference;
 
-import io.github.kobakei.spotsample.entity.SampleModel;
-import io.github.kobakei.spotsample.entity.SampleModelSpotRepository;
+import java.lang.reflect.Method;
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
@@ -20,7 +23,7 @@ import static org.junit.Assert.assertTrue;
 
 /**
  * Unit test of spot repository class.
- *
+ * <p>
  * Created by keisukekobayashi on 2017/07/24.
  */
 @RunWith(RobolectricTestRunner.class)
@@ -80,5 +83,28 @@ public class SampleModelSpotRepositoryTest {
         // should return default values of SharedPreferences (not default values of entity)
         assertEquals(0L, preferences.getLong("number_long", 0L));
         assertTrue(preferences.getBoolean("is_enabled", true));
+    }
+
+    @Test
+    public void kotlinMethods_isSuccess() throws Exception {
+        Method[] methods = Class
+                .forName("io.github.kobakei.spotsample.entity.SampleModelKt")
+                .getMethods();
+        List<String> shouldHaveMethods = Arrays.asList(
+                "getNumberLong", "setNumberLong",
+                "getNumberInt", "setNumberInt",
+                "isEnabled", "setEnabled",
+                "getContains", "setContains",
+                "getCanRead", "setCanRead",
+                "getHasApple", "setHasApple",
+                "getIssued", "setIssued",
+                "getText", "setText",
+                "getTextSet", "setTextSet",
+                "getDate", "setDate",
+                "getBoxedInt", "setBoxedInt");
+
+        shouldHaveMethods.forEach(methodName -> assertTrue(
+                Arrays.stream(methods).map(Method::getName).collect(Collectors.toList())
+                        .contains(methodName)));
     }
 }

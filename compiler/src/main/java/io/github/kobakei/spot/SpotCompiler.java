@@ -1,17 +1,15 @@
 package io.github.kobakei.spot;
 
 import android.content.Context;
-
 import com.google.auto.service.AutoService;
 import com.squareup.javapoet.ClassName;
 import com.squareup.javapoet.JavaFile;
 import com.squareup.javapoet.MethodSpec;
 import com.squareup.javapoet.TypeName;
 import com.squareup.javapoet.TypeSpec;
-
-import java.io.IOException;
-import java.util.HashSet;
-import java.util.Set;
+import io.github.kobakei.spot.annotation.Pref;
+import io.github.kobakei.spot.annotation.PrefField;
+import io.github.kobakei.spot.internal.PreferencesUtil;
 
 import javax.annotation.processing.AbstractProcessor;
 import javax.annotation.processing.Filer;
@@ -29,10 +27,9 @@ import javax.lang.model.type.MirroredTypeException;
 import javax.lang.model.type.TypeMirror;
 import javax.lang.model.util.Elements;
 import javax.tools.Diagnostic;
-
-import io.github.kobakei.spot.annotation.Pref;
-import io.github.kobakei.spot.annotation.PrefField;
-import io.github.kobakei.spot.internal.PreferencesUtil;
+import java.io.IOException;
+import java.util.HashSet;
+import java.util.Set;
 
 @AutoService(Processor.class)
 public class SpotCompiler extends AbstractProcessor {
@@ -331,7 +328,8 @@ public class SpotCompiler extends AbstractProcessor {
         getEntitySpecBuilder.beginControlFlow("if ($T.contains(context, getName(), $S))", utilClass, pref.name());
 
         if (pref.useSetter()) {
-            String setterName = getSetterName(element1.getSimpleName().toString());
+            String setterName = getSetterName(
+                    removeBooleanFieldPrefix(element1.getSimpleName().toString()));
             getEntitySpecBuilder.addStatement(
                     "entity.$L ( new $T().convertFromSupportedType( $T.getBoolean(context, getName(), $S, $L) ) )",
                     setterName,
@@ -352,7 +350,7 @@ public class SpotCompiler extends AbstractProcessor {
         getEntitySpecBuilder.endControlFlow();
 
         if (pref.useGetter()) {
-            String getterName = getGetterName(element1.getSimpleName().toString());
+            String getterName = getBooleanGetterName(element1.getSimpleName().toString());
             putEntitySpecBuilder.addStatement(
                     "$T.putBoolean(context, getName(), $S, new $T().convertToSupportedType(entity.$N()) )",
                     utilClass,
@@ -461,6 +459,29 @@ public class SpotCompiler extends AbstractProcessor {
                     converterClass,
                     element1.getSimpleName());
         }
+    }
+
+    private String removeBooleanFieldPrefix(String field) {
+        if (field.length() > 0 && field.startsWith("is")) {
+            if (Character.isUpperCase(field.charAt(2))) {
+                return field.substring(2, field.length());
+            }
+        }
+        return field;
+    }
+
+    private String getBooleanGetterName(String field) {
+        if (field.length() > 0 && field.startsWith("is") && Character.isUpperCase(field.charAt(2))) {
+            return field;
+        }
+        String setter = "get";
+        if (field.length() > 0) {
+            setter += field.substring(0, 1).toUpperCase();
+            if (field.length() > 1) {
+                setter += field.substring(1);
+            }
+        }
+        return setter;
     }
 
     private String getGetterName(String field) {
